@@ -10,7 +10,7 @@ const validateSignupInput = require("../../validation/signup");
 const validateLoginInput = require("../../validation/login");
 
 // Load User model
-const User = require("../../Models/User");
+const User = require("../../models/User");
 
 // @route   GET api/users/test
 // @desc    Test users route
@@ -28,7 +28,7 @@ router.post("/signup", (req, res) => {
   const { errors, isValid } = validateSignupInput(req.body);
 
   // Check validation
-  if(!isValid) {
+  if (!isValid) {
     return res.status(400).json(errors);
   }
 
@@ -72,7 +72,7 @@ router.post("/login", (req, res) => {
   const { errors, isValid } = validateLoginInput(req.body);
 
   // Check validation
-  if(!isValid) {
+  if (!isValid) {
     return res.status(400).json(errors);
   }
 
@@ -111,11 +111,15 @@ router.post("/login", (req, res) => {
 // @route   GET api/users/current
 // @desc    Return current user
 // @access  Private
-router.get("/current", passport.authenticate('jwt', { session: false }), (req, res) => {
-  res.json({
-    id: req.user.id,
-    name: req.user.name,
-    email: req.user.email,
-  });
-});
+router.get(
+  "/current",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    res.json({
+      id: req.user.id,
+      name: req.user.name,
+      email: req.user.email
+    });
+  }
+);
 module.exports = router;
