@@ -22,7 +22,7 @@ const ProfileSchema = new Schema({
     type: String,
     require: true
   },
-  skill: {
+  skills: {
     type: [String],
     required: true
   },
@@ -91,7 +91,7 @@ const ProfileSchema = new Schema({
       }
     }
   ],
-  socail: {
+  social: {
     youtube: {
       type: String
     },
@@ -99,6 +99,9 @@ const ProfileSchema = new Schema({
       type: String
     },
     facebook: {
+      type: String
+    },
+    linkedin: {
       type: String
     },
     instagram: {
